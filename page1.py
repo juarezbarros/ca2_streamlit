@@ -5,8 +5,8 @@ import streamlit as st
 
 
 # Suponha que o df_merged já foi carregado:
-df_merged = pd.read_csv("df_merged.csv")
-# Ou se já estiver no ambiente: apenas df_merged
+url = "df_merged.csv"  # ou caminho correto no GitHub
+df = pd.read_csv(url)
 
 # Converter coluna Date para datetime (se ainda não estiver)
 df_merged['Date'] = pd.to_datetime(df_merged['Date'])

@@ -9,7 +9,7 @@ url = "df_merged.csv"  # ou caminho correto no GitHub
 df = pd.read_csv(url)
 
 # Converter coluna Date para datetime (se ainda não estiver)
-df_merged['Date'] = pd.to_datetime(df_merged['Date'])
+# df_merged['Date'] = pd.to_datetime(df_merged['Date'])
 
 # Filtrar datas a partir de 2020-12-01 (dezembro de 2020 em diante)
 df_filtered = df_merged[df_merged['Date'] >= '2020-12-01']

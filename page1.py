@@ -7,7 +7,7 @@ df = pd.read_csv("df_merged.csv")
 df['Date'] = pd.to_datetime(df['Date'])  # Converter para datetime
 
 # Filtrar datas a partir de 1º de dezembro de 2020
-df_filtered = df[df['Date'] >= '2020-12-01']
+df_filtered = df[df['Date'] >= '2020-01-01']
 
 # Título do app
 st.title("Fechamento por Ticker (Dezembro 2020 em diante)")

@@ -3,9 +3,10 @@ import pandas as pd
 import plotly.graph_objects as go
 import numpy as np
 
-# Carregar sua base (exemplo com CSV; ajuste se estiver carregando de outro lugar)
-# df_sarima_graph1 = pd.read_csv('seu_arquivo.csv')
-# Supondo que você já tenha df_sarima_graph1 no ambiente:
+url = "df_sarima_graph1.csv"
+df_sarima_graph1 = pd.read_csv(url)
+
+
 df = df_sarima_graph1.copy()
 
 # Preprocessamento

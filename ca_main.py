@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Suponha que o df_merged já foi carregado:
-# df_merged = pd.read_csv("df_merged.csv")
+df_merged = pd.read_csv("df_merged.csv")
 # Ou se já estiver no ambiente: apenas df_merged
 
 # Converter coluna Date para datetime (se ainda não estiver)

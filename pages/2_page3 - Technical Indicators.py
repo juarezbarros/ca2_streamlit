@@ -4,7 +4,7 @@ import plotly.express as px
 
 st.set_page_config(page_title="Indicators", layout="wide")
 
-url = "df_merged.csv"  # ou caminho correto no GitHub
+url = "df_merged.csv" 
 df = pd.read_csv(url)
 
 df['Date'] = pd.to_datetime(df['Date'])

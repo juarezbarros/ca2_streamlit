@@ -2,29 +2,30 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
 
+# Carregar o dataframe
+df = pd.read_csv("df_merged.csv")
+df['Date'] = pd.to_datetime(df['Date'])  # Converter para datetime
 
+# Filtrar datas a partir de 1º de dezembro de 2020
+df_filtered = df[df['Date'] >= '2020-12-01']
 
-# Suponha que o df_merged já foi carregado:
-url = "df_merged.csv"  # ou caminho correto no GitHub
-df = pd.read_csv(url)
+# Título do app
+st.title("Fechamento por Ticker (Dezembro 2020 em diante)")
 
-# Converter coluna Date para datetime (se ainda não estiver)
-# df_merged['Date'] = pd.to_datetime(df_merged['Date'])
-
-# Filtrar datas a partir de 2020-12-01 (dezembro de 2020 em diante)
-df_filtered = df_merged[df_merged['Date'] >= '2020-12-01']
-
-# Gráfico de preços de fechamento por ticker
+# Criar o gráfico com Matplotlib
 plt.figure(figsize=(14, 7))
 
 for ticker in df_filtered['Ticker'].unique():
     ticker_df = df_filtered[df_filtered['Ticker'] == ticker]
     plt.plot(ticker_df['Date'], ticker_df['Close'], label=ticker)
 
-plt.title('Close Price per Ticker (From December 2020)')
-plt.xlabel('Date')
-plt.ylabel('Close Price')
+plt.xlabel('Data')
+plt.ylabel('Preço de Fechamento')
+plt.title('Preço por Ticker')
 plt.legend()
 plt.grid(True)
 plt.tight_layout()
-plt.show()
+
+# Exibir no Streamlit
+st.pyplot(plt)
+

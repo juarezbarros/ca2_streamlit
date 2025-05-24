@@ -1,10 +1,8 @@
-import streamlit as st
-
-st.title("My Multipage Stock Dashboard")
-st.write("Use the sidebar to navigate between pages.")
-
 import matplotlib.pyplot as plt
 import pandas as pd
+import streamlit as st
+
+
 
 # Suponha que o df_merged já foi carregado:
 df_merged = pd.read_csv("df_merged.csv")

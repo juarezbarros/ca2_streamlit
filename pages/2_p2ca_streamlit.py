@@ -8,7 +8,8 @@ url = "df_merged.csv"  # ou caminho correto no GitHub
 df = pd.read_csv(url)
 
 df['Date'] = pd.to_datetime(df['Date'])
-df = df[df['Date'].dt.month == 12]  # Filtrar apenas Dezembro
+df = df[(df['Date'] >= '2020-12-01')]
+
 
 tickers = df['Ticker'].unique()
 selected_ticker = st.sidebar.selectbox("Select a Ticker", tickers)

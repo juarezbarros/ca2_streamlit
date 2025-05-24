@@ -19,17 +19,17 @@ df_tkr = df[df['Ticker'] == selected_ticker]
 st.title(f"Technical Indicators - {selected_ticker} (December Only)")
 
 # Plot 1 - Volume
-fig1 = px.line(df_tkr, x='Date', y='Volume', title='Daily Volume')
+fig1 = px.line(df_tkr, x='Date', y='Volume', title='Daily Volume - The total number of shares traded for a stock on a given day.')
 st.plotly_chart(fig1, use_container_width=True)
 
 # Plot 2 - SMA_10
-fig2 = px.line(df_tkr, x='Date', y='SMA_10', title='SMA 10')
+fig2 = px.line(df_tkr, x='Date', y='SMA_10', title='Simple Moving Average 10 - The average closing price of a stock over the last 10 trading days.')
 st.plotly_chart(fig2, use_container_width=True)
 
 # Plot 3 - RSI
-fig3 = px.line(df_tkr, x='Date', y='RSI', title='RSI')
+fig3 = px.line(df_tkr, x='Date', y='RSI', title='RSI - A momentum indicator that measures the speed and change of price movements.')
 st.plotly_chart(fig3, use_container_width=True)
 
 # Plot 4 - Volatility_10
-fig4 = px.line(df_tkr, x='Date', y='Volatility_10', title='10-Day Volatility')
+fig4 = px.line(df_tkr, x='Date', y='Volatility_10', title='10-Day Volatility - A measure of how much the stock’s price fluctuated over the last 10 days.')
 st.plotly_chart(fig4, use_container_width=True)

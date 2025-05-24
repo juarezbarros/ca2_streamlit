@@ -1,45 +1,45 @@
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
+import numpy as np
 
-url = "df_sarima_graph1.csv"
-df_sarima_graph1 = pd.read_csv(url)
-
-
-
+# Carregar sua base (exemplo com CSV; ajuste se estiver carregando de outro lugar)
+# df_sarima_graph1 = pd.read_csv('seu_arquivo.csv')
+# Supondo que você já tenha df_sarima_graph1 no ambiente:
 df = df_sarima_graph1.copy()
+
+# Preprocessamento
+df[['Pred_1', 'Pred_3', 'Pred_7']] = df[['Pred_1', 'Pred_3', 'Pred_7']].replace(0, np.nan)
 df['Date'] = pd.to_datetime(df['Date'])
+df = df.sort_values(by=['Ticker', 'Date'])
 
+# Sidebar: seleção do ticker
+tickers = df['Ticker'].unique()
+selected_ticker = st.sidebar.selectbox("Selecione o Ticker", tickers)
 
-horizon = st.selectbox("...", ['Pred_1', 'Pred_3', 'Pred_7'])
+# Filtrar dados para o ticker selecionado
+df_tkr = df[df['Ticker'] == selected_ticker]
 
-
-plot_df = df[['Date', 'Close', horizon]].dropna()
-
-
+# Criar gráfico interativo com plotly
 fig = go.Figure()
 
-
-fig.add_trace(go.Scatter(
-    x=plot_df['Date'],
-    y=plot_df['Close'],
-    mode='lines+markers',
-    name='Real Price'
-))
-
-
-fig.add_trace(go.Scatter(
-    x=plot_df['Date'],
-    y=plot_df[horizon],
-    mode='lines+markers',
-    name=f'Prediction {horizon}'
-))
+fig.add_trace(go.Scatter(x=df_tkr['Date'], y=df_tkr['Close'], 
+                         mode='lines+markers', name='Close', line=dict(color='black')))
+fig.add_trace(go.Scatter(x=df_tkr['Date'], y=df_tkr['Pred_1'], 
+                         mode='lines', name='Pred_1', line=dict(dash='dot')))
+fig.add_trace(go.Scatter(x=df_tkr['Date'], y=df_tkr['Pred_3'], 
+                         mode='lines', name='Pred_3', line=dict(dash='dot')))
+fig.add_trace(go.Scatter(x=df_tkr['Date'], y=df_tkr['Pred_7'], 
+                         mode='lines', name='Pred_7', line=dict(dash='dot')))
 
 fig.update_layout(
-    title=f'AAPL - Real Price vs Prediction {horizon}',
-    xaxis_title='Date',
-    yaxis_title='Price ($)',
-    template='plotly_white'
+    title=f"Preço Real vs Previsões - {selected_ticker}",
+    xaxis_title="Data",
+    yaxis_title="Preço ($)",
+    template="plotly_white",
+    xaxis=dict(tickangle=45),
+    legend=dict(x=0, y=1)
 )
 
 st.plotly_chart(fig)
+

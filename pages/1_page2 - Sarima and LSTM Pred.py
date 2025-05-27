@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 st.set_page_config(page_title="Predictions SARIMA e LSTM", layout="wide")
-st.title("Predictions SARIMA e LSTM - December/20")
+st.title("Predictions SARIMAX, SARIMAX HYPEROPT, LSTM and LSTM HyperOPT DEC/20")
 
 df = pd.read_csv("df_merged.csv")
 df['Date'] = pd.to_datetime(df['Date'])

@@ -19,7 +19,7 @@ st.subheader(f"Metrics - {selected_ticker}")
 st.dataframe(df_tkr_metrics.reset_index(drop=True))
 
 
-st.subheader("Best Model per Ticker +1 Day")
+st.subheader("Best Models +1 Day - based on R2 and RMSE")
 
 best_models = []
 for ticker in df_metrics["Ticker"].unique():

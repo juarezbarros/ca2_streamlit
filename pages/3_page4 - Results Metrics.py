@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 st.set_page_config(page_title="Metrics per Models", layout="wide")
-st.title("Avaliação de Modelos SARIMA e LSTM")
+st.title("Results - Models")
 
 
 df_metrics = pd.read_csv("df_metrics.csv")
@@ -15,7 +15,7 @@ selected_ticker = st.sidebar.selectbox("Selecione um Ticker", tickers)
 df_tkr_metrics = df_metrics[df_metrics["Ticker"] == selected_ticker]
 
 
-st.subheader(f"Métricas dos Modelos - {selected_ticker}")
+st.subheader(f"Metrics - {selected_ticker}")
 st.dataframe(df_tkr_metrics.reset_index(drop=True))
 
 
@@ -35,21 +35,26 @@ df_best_per_ticker = pd.DataFrame(best_models)
 
 
 sns.set(style="whitegrid")
-fig, ax = plt.subplots(figsize=(7, 4))
+fig, ax = plt.subplots(figsize=(6, 4))  
 sns.barplot(data=df_best_per_ticker, x='Ticker', y='RMSE_+1', hue='Model', dodge=False, ax=ax)
 
-ax.set_title("Best Model per Ticker +1 Day", fontsize=14)
-ax.set_ylabel("RMSE (+1 Day)")
-ax.set_xlabel("Ticker")
-ax.legend(title="Model")
 
+ax.set_title("Best Model per Ticker (+1d)", fontsize=10)
+ax.set_ylabel("RMSE (+1d)", fontsize=9)
+ax.set_xlabel("Ticker", fontsize=9)
+
+
+ax.legend(title="Model", fontsize=8, title_fontsize=9)
 
 for p in ax.patches:
     ax.annotate(f'{p.get_height():.2f}',
                 (p.get_x() + p.get_width() / 2., p.get_height()),
                 ha='center', va='bottom',
-                fontsize=10, color='black',
-                xytext=(0, 5),
+                fontsize=8, color='black',
+                xytext=(0, 4),
                 textcoords='offset points')
+
+
+ax.tick_params(axis='both', labelsize=8)
 
 st.pyplot(fig)

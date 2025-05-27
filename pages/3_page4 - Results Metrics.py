@@ -39,18 +39,18 @@ fig, ax = plt.subplots(figsize=(6, 4))
 sns.barplot(data=df_best_per_ticker, x='Ticker', y='RMSE_+1', hue='Model', dodge=False, ax=ax)
 
 
-ax.set_title("Best Model per Ticker (+1d)", fontsize=10)
-ax.set_ylabel("RMSE (+1d)", fontsize=9)
-ax.set_xlabel("Ticker", fontsize=9)
+
+ax.set_ylabel("RMSE (+1d)", fontsize=7)
+ax.set_xlabel("Ticker", fontsize=7)
 
 
-ax.legend(title="Model", fontsize=8, title_fontsize=9)
+ax.legend(title="Model", fontsize=7, title_fontsize=7)
 
 for p in ax.patches:
     ax.annotate(f'{p.get_height():.2f}',
                 (p.get_x() + p.get_width() / 2., p.get_height()),
                 ha='center', va='bottom',
-                fontsize=8, color='black',
+                fontsize=7, color='black',
                 xytext=(0, 4),
                 textcoords='offset points')
 

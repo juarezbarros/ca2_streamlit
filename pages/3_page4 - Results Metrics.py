@@ -35,7 +35,7 @@ df_best_per_ticker = pd.DataFrame(best_models)
 
 
 sns.set(style="whitegrid")
-fig, ax = plt.subplots(figsize=(6, 4))  
+fig, ax = plt.subplots(figsize=(5, 3))  
 sns.barplot(data=df_best_per_ticker, x='Ticker', y='RMSE_+1', hue='Model', dodge=False, ax=ax)
 
 

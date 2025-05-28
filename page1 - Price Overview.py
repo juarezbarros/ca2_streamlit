@@ -4,7 +4,7 @@ import streamlit as st
 
 
 df = pd.read_csv("df_merged.csv")
-df['Date'] = pd.to_datetime(df['Date'])  # Converter para datetime
+df['Date'] = pd.to_datetime(df['Date'])
 df_filtered = df[df['Date'] >= '2020-01-01']
 
 st.title("Close Price - Stocks 2020")
@@ -21,6 +21,5 @@ plt.legend()
 plt.grid(True)
 plt.tight_layout()
 
-# Exibir no Streamlit
 st.pyplot(plt)
 

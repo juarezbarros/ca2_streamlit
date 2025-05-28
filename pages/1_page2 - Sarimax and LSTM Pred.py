@@ -21,10 +21,10 @@ selected_ticker = st.sidebar.selectbox("Selecione um Ticker", tickers)
 
 df_tkr = df[df['Ticker'] == selected_ticker]
 
-# Criando colunas para layout 2x2
+
 col1, col2 = st.columns(2)
 
-# Gráfico 1 - SARIMA
+
 with col1:
     st.subheader(f"SARIMAX - {selected_ticker}")
     fig1, ax1 = plt.subplots(figsize=(6, 4))
@@ -40,7 +40,7 @@ with col1:
     plt.xticks(rotation=45)
     st.pyplot(fig1)
 
-# Gráfico 2 - SARIMAX HYPEROPT
+
 with col2:
     st.subheader(f"SARIMAX HYPEROPT - {selected_ticker}")
     fig2, ax2 = plt.subplots(figsize=(6, 4))
@@ -56,10 +56,10 @@ with col2:
     plt.xticks(rotation=45)
     st.pyplot(fig2)
 
-# Segunda linha
+
 col3, col4 = st.columns(2)
 
-# Gráfico 3 - LSTM
+
 with col3:
     st.subheader(f"LSTM - {selected_ticker}")
     fig3, ax3 = plt.subplots(figsize=(6, 4))
@@ -75,7 +75,7 @@ with col3:
     plt.xticks(rotation=45)
     st.pyplot(fig3)
 
-# Gráfico 4 - LSTM Hyperopt
+
 with col4:
     st.subheader(f"LSTM HYPEROPT - {selected_ticker}")
     fig4, ax4 = plt.subplots(figsize=(6, 4))

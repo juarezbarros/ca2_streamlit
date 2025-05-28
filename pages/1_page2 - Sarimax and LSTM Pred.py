@@ -13,7 +13,7 @@ df['Date'] = pd.to_datetime(df['Date'])
 df[['Sarima_Pred_1', 'Sarima_Pred_3', 'Sarima_Pred_7']] = \
     df[['Sarima_Pred_1', 'Sarima_Pred_3', 'Sarima_Pred_7']].replace(0, np.nan)
 
-df = df[(df['Date'].dt.month == 12) & (df['Date'].dt.year == 2020)]
+df = df[(df['Date'].dt.month == 11) & (df['Date'].dt.year == 2020)]
 df = df.sort_values(by=['Ticker', 'Date'])
 
 tickers = df['Ticker'].unique()
